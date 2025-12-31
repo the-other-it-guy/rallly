@@ -119,6 +119,10 @@ export const env = createEnv({
      */
     LOGO_URL: z.url().optional(),
     LOGO_ICON_URL: z.url().optional(),
+    /**
+     * Domain name for anonymous user emails
+     */
+    ANONYMOUS_EMAIL_DOMAIN: z.string().default("rallly.co"),
   },
   /*
    * Environment variables available on the client (and server).
@@ -191,6 +195,7 @@ export const env = createEnv({
     LOGO_URL: process.env.LOGO_URL,
     LOGO_ICON_URL: process.env.LOGO_ICON_URL,
     APP_NAME: process.env.APP_NAME,
+    ANONYMOUS_EMAIL_DOMAIN: process.env.ANONYMOUS_EMAIL_DOMAIN,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
