@@ -111,16 +111,20 @@ export const authLib = betterAuth({
   plugins: [
     ...plugins,
     admin(),
-    anonymous({
-      emailDomainName: "rallly.co",
-      generateName: async () => {
-        const { t } = await getTranslation();
-        return t("guest");
-      },
-      onLinkAccount: async ({ anonymousUser, newUser }) => {
-        await linkAnonymousUser(newUser.user.id, anonymousUser.user.id);
-      },
-    }),
+    ...(env.ANONYMOUS_AUTH_ENABLED === "true"
+      ? [
+          anonymous({
+            emailDomainName: "rallly.co",
+            generateName: async () => {
+              const { t } = await getTranslation();
+              return t("guest");
+            },
+            onLinkAccount: async ({ anonymousUser, newUser }) => {
+              await linkAnonymousUser(newUser.user.id, anonymousUser.user.id);
+            },
+          }),
+        ]
+      : []),
     lastLoginMethod({
       storeInDatabase: true,
     }),

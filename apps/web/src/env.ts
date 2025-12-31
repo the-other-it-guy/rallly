@@ -60,6 +60,13 @@ export const env = createEnv({
     EMAIL_LOGIN_ENABLED: z.enum(["true", "false"]).default("true"),
     REGISTRATION_ENABLED: z.enum(["true", "false"]).default("true"),
     /**
+     * Enable or disable anonymous/guest user authentication.
+     * When enabled, users can create and participate in polls without creating an account.
+     * Anonymous users are assigned temporary email addresses in the format temp-{randomid}@rallly.co
+     * @default "true"
+     */
+    ANONYMOUS_AUTH_ENABLED: z.enum(["true", "false"]).default("true"),
+    /**
      * Email addresses for support and no-reply emails.
      */
     SUPPORT_EMAIL: z.email(),
