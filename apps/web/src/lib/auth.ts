@@ -112,7 +112,7 @@ export const authLib = betterAuth({
     ...plugins,
     admin(),
     anonymous({
-      emailDomainName: "rallly.co",
+      emailDomainName: env.ANONYMOUS_EMAIL_DOMAIN,
       generateName: async () => {
         const { t } = await getTranslation();
         return t("guest");
