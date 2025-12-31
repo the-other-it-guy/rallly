@@ -60,6 +60,13 @@ export const env = createEnv({
     EMAIL_LOGIN_ENABLED: z.enum(["true", "false"]).default("true"),
     REGISTRATION_ENABLED: z.enum(["true", "false"]).default("true"),
     /**
+     * Enable or disable anonymous/guest user authentication.
+     * When enabled, users can create and participate in polls without creating an account.
+     * Anonymous users are assigned temporary email addresses in the format temp-{randomid}@rallly.co
+     * @default "true"
+     */
+    ANONYMOUS_AUTH_ENABLED: z.enum(["true", "false"]).default("true"),
+    /**
      * Email addresses for support and no-reply emails.
      */
     SUPPORT_EMAIL: z.email(),
@@ -161,6 +168,7 @@ export const env = createEnv({
     ALLOWED_EMAILS: process.env.ALLOWED_EMAILS,
     EMAIL_LOGIN_ENABLED: process.env.EMAIL_LOGIN_ENABLED,
     REGISTRATION_ENABLED: process.env.REGISTRATION_ENABLED,
+    ANONYMOUS_AUTH_ENABLED: process.env.ANONYMOUS_AUTH_ENABLED,
     AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
     AWS_REGION: process.env.AWS_REGION,
